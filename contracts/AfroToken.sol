@@ -8,16 +8,19 @@ import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol";
 
 contract AfroToken is Initializable, ERC20Upgradeable, UUPSUpgradeable, OwnableUpgradeable {    
-    uint public AfroTokenTotalSupply = 10000;
-    function initialize () public initializer {
-        __ERC20_init("AfroToken", "AFT");
+    uint public afroTokenTotalSupply;
 
-        _mint(msg.sender, AfroTokenTotalSupply * 10**18);
+    function initialize (uint _afroTokenTotalSupply) public initializer {
+        __ERC20_init("AfroToken", "AFT");
+        
+        afroTokenTotalSupply = _afroTokenTotalSupply;
+
+        _mint(msg.sender, afroTokenTotalSupply * 10**18);
     }
 
     function _authorizeUpgrade(address newImplementation) internal override onlyOwner {}
 
     function totalSupply() public view override returns (uint) {
-        return AfroTokenTotalSupply;
+        return afroTokenTotalSupply;
     }
 }

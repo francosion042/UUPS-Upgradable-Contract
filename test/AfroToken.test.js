@@ -1,11 +1,15 @@
 const { expect } = require("chai");
-const { ethers } = require("hardhat");
+const { ethers} = require("hardhat");
+const hre = require("hardhat");
 
 describe("AfroToken", function () {
   it("assert that everything is okay", async function () {
+    const afroTokenTotalSupply = 10000;
     const AfroToken = await ethers.getContractFactory("AfroToken");
-    const afroToken = await AfroToken.deploy("Hello, world!");
+    const afroToken = await hre.upgrades.deployProxy(AfroToken, [afroTokenTotalSupply], {kind: "uups", initializer: "initialize"});
     await afroToken.deployed();
+
+    expect(await afroToken.totalSupply()).to.equal(afroTokenTotalSupply);
 
     // expect(await greeter.greet()).to.equal("Hello, world!");
 
