@@ -12,7 +12,9 @@ contract AfroToken is Initializable, ERC20Upgradeable, UUPSUpgradeable, OwnableU
 
     function initialize (uint _afroTokenTotalSupply) public initializer {
         __ERC20_init("AfroToken", "AFT");
-        
+
+        __Ownable_init();
+
         afroTokenTotalSupply = _afroTokenTotalSupply;
 
         _mint(msg.sender, afroTokenTotalSupply * 10**18);

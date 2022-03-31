@@ -19,7 +19,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "compile": "npx hardhat compile"
   },
   "repository": {
     "type": "git",

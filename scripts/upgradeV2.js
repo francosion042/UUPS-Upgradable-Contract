@@ -13,12 +13,14 @@ async function main() {
   // manually to make sure everything is compiled
   // await hre.run('compile');
 
+  const AfroTokenAddress = ""
+
   // We get the contract to deploy
-  const AfroToken = await hre.ethers.getContractFactory("AfroToken");
-  const afroToken = await hre.upgrades.deployProxy(AfroToken, [afroTokenTotalSupply], {kind: "uups", initializer: "initialize"});
+  const AfroTokenV2 = await hre.ethers.getContractFactory("AfroTokenV2");
+  const afroTokenV2 = await hre.upgrades.upgradeProxy(AfroTokenAddress, AfroTokenV2);
 
 
-  console.log("AfroToken deployed to:", afroToken.address);
+  console.log("AfroToken upgraded:", afroTokenV2.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
