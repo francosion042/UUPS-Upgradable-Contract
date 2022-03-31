@@ -8,6 +8,7 @@
     "hardhat": "^2.9.2"
   },
   "dependencies": {
-    "@openzeppelin/contracts-upgradeable": "^4.5.2"
+    "@openzeppelin/contracts-upgradeable": "^4.5.2",
+    "@openzeppelin/hardhat-upgrades": "^1.17.0"
   }
 }
