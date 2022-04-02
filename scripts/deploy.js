@@ -17,6 +17,7 @@ async function main() {
   const AfroToken = await hre.ethers.getContractFactory("AfroToken");
   const afroToken = await hre.upgrades.deployProxy(AfroToken, [afroTokenTotalSupply], {kind: "uups", initializer: "initialize"});
 
+  await afroToken.deployed()
 
   console.log("AfroToken deployed to:", afroToken.address);
 }
